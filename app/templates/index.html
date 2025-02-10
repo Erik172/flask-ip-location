@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acortador de URL</title>
+</head>
+<body>
+    <h1>Acortador de URL</h1>
+    <form action="{{ url_for('create_url') }}" method="POST">
+        <label for="original_url">URL original:</label>
+        <input type="text" id="original_url" name="original_url" required>
+        <button type="submit">Acortar URL</button>
+    </form>
+</body>
+</html>

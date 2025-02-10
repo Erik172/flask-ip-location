@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estadísticas de URLs</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Estadísticas de URLs</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>URL Original</th>
+                <th>URL Acortada</th>
+                <th>Visitas</th>
+                <th>Fecha de Creación</th>
+                <th>Última Visita</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+            <tr>
+                <td>{{ url.original_url }}</td>
+                <td><a href="{{ url_for('redirect_to_url', short_url=url.short_url) }}">{{ url.short_url }}</a></td>
+                <td>{{ url.visits }}</td>
+                <td>{{ url.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ url.last_visited.strftime('%Y-%m-%d %H:%M:%S') if url.last_visited else 'Nunca' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
