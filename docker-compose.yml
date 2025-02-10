@@ -18,6 +18,10 @@ services:
       POSTGRES_DB: ip_location_db
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"  # Exponiendo el puerto para acceso externo
+    network_mode: bridge  # Permite conexión desde fuera del contenedor
+    restart: unless-stopped
 
   nginx:
     image: nginx:latest
